@@ -63,12 +63,17 @@
 
 **OpenClaw 的 Skill 存放**：OpenClaw 项目结构各异，不强制统一路径。扫描项目中已有的 skill 文件（搜索 `SKILL.md`），参照已有 skill 的存放位置来决定 `agent-msg/SKILL.md` 放在哪里。如果项目中没有任何 skill，询问用户希望放在哪里。
 
-从以下地址下载 SKILL.md 文件：
+从以下地址下载 SKILL.md 文件（优先 GitHub，失败则镜像）：
 
 ```
+主地址（GitHub）:
 https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
+
+镜像地址:
+https://ai.weijennie.com/acp/agent-msg/SKILL.md
 ```
 
+如果 GitHub 无法访问，自动改用镜像地址继续安装。
 将文件中 `acp/` 路径替换为第一步用户确认的实际路径（如果不是默认的 `acp/`）。
 
 ### 第三步：更新配置文件
