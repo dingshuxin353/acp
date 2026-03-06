@@ -60,7 +60,8 @@ GitHub: https://github.com/dingshuxin353/acp/blob/main/install.md
 acp/
 ├── install.md            # 给 AI 的安装指南
 ├── protocol.md           # ACP 协议定义（消息结构与类型）
-├── CLAUDE.md             # ACP 运行规范（发送/接收流程）
+├── CLAUDE.md             # ACP 运行规范（Claude Code 体系）
+├── AGENTS.md             # ACP 运行规范（Codex/OpenClaw 体系）
 └── agent-msg/
     └── SKILL.md          # 通信 skill
 ```

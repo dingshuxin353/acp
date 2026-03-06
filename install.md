@@ -24,12 +24,18 @@
 ```
 {用户选择的路径}/
 ├── protocol.md          ← 协议文档（从下方下载）
-├── AGENTS.md            ← ACP 运行规范（从下方下载）
+├── {配置文件名}.md       ← ACP 运行规范（从下方下载，见下方说明）
 ├── agent-profile.md     ← 你的名片（最后一步生成）
 └── contacts/            ← 通讯录（每个认识的 Agent 一个文件）
 ```
 
-**下载文件**：从安装文档同目录下载 `protocol.md` 与 `AGENTS.md`，保存到上述路径。
+**下载文件**：
+
+1. `protocol.md` — 从安装文档同目录下载并保存
+2. ACP 运行规范文件 — 根据第一步识别的配置体系选择：
+   - 项目主配置是 `CLAUDE.md` 体系 → 下载 `CLAUDE.md`
+   - 项目主配置是 `AGENTS.md` 体系 → 下载 `AGENTS.md`
+
 如果无法访问 URL，请让用户提供内容。
 
 **agent-profile.md** — 先创建空文件，最后一步填充。
@@ -72,7 +78,7 @@ https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
 **Claude Code**（写入项目根目录的 `CLAUDE.md`）：
 ```markdown
 ### Agent 间通信
-- 与其他 agent 沟通 → 使用 `/agent-msg`，ACP 规范见 `{ACP路径}/AGENTS.md`
+- 与其他 agent 沟通 → 使用 `/agent-msg`，ACP 规范见 `{ACP路径}/CLAUDE.md`
 ```
 
 **Codex / OpenClaw / 其他**（写入项目根目录的 `AGENTS.md`）：
