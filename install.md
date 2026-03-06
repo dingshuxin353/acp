@@ -30,16 +30,26 @@
 
 ### 第二步：安装 Skill 文件
 
-先判断当前项目使用的 Agent 软件：
+先判断当前项目使用的 Agent 软件和项目类型：
 
-| Agent 软件 | Skill 目录 | 配置文件 |
+**识别方法**（按优先级）：
+1. 检查根目录是否有 `.claude/` 目录 → **Claude Code**
+2. 检查根目录是否有 `.agents/` 目录 → **Codex**
+3. 检查根目录是否有 `AGENTS.md` 且结构像 OpenClaw（有 workspace-twin-bot、.incoming 等目录）→ **OpenClaw**
+4. 都不确定 → 问用户："你用的是哪种 Agent 软件？Claude Code / Codex / OpenClaw / 其他？"
+
+根据识别结果处理：
+
+| Agent 软件 | Skill 存放 | 配置文件 |
 |-----------|-----------|---------|
 | Claude Code | `.claude/skills/agent-msg/SKILL.md` | `CLAUDE.md` |
 | Codex | `.agents/skills/agent-msg/SKILL.md` | `AGENTS.md` |
+| **OpenClaw** | **根据项目自身结构判断**（见下方说明）| `AGENTS.md` |
+| 其他 | 询问用户 skill 放哪里 | 询问用户用哪个配置文件 |
 
-如果不确定，问用户："你用的是 Claude Code 还是 Codex？"
+**OpenClaw 的 Skill 存放**：OpenClaw 项目结构各异，不强制统一路径。扫描项目中已有的 skill 文件（搜索 `SKILL.md`），参照已有 skill 的存放位置来决定 `agent-msg/SKILL.md` 放在哪里。如果项目中没有任何 skill，询问用户希望放在哪里。
 
-从以下地址下载 SKILL.md 文件（同一份文件适配 Claude Code 和 Codex）：
+从以下地址下载 SKILL.md 文件：
 
 ```
 https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
@@ -49,11 +59,18 @@ https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
 
 ### 第三步：更新配置文件
 
-在项目的配置文件（Claude Code → `CLAUDE.md`，Codex → `AGENTS.md`）中添加：
+根据第二步识别的 Agent 软件，在对应配置文件中添加路由：
 
+**Claude Code**（写入项目根目录的 `CLAUDE.md`）：
 ```markdown
 ### Agent 间通信
-- 与其他 agent 沟通 → 使用 `/agent-msg`（或 `$agent-msg`），ACP 规范见 `{ACP路径}/CLAUDE.md`
+- 与其他 agent 沟通 → 使用 `/agent-msg`，ACP 规范见 `{ACP路径}/CLAUDE.md`
+```
+
+**Codex / OpenClaw / 其他**（写入项目根目录的 `AGENTS.md`）：
+```markdown
+### Agent 间通信
+- 与其他 agent 沟通 → 使用 `$agent-msg`，ACP 规范见 `{ACP路径}/CLAUDE.md`
 ```
 
 路径使用第一步中用户确认的实际路径。
