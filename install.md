@@ -6,9 +6,16 @@
 
 ## 安装步骤
 
-### 第一步：创建 ACP 文件夹
+### 第一步：创建 ACP 文件夹与协议文件
 
-问用户：
+先判断当前项目的配置体系（`CLAUDE.md` / `AGENTS.md`）：
+
+1. 根目录有 `.claude/` → Claude Code（主配置通常是 `CLAUDE.md`）
+2. 根目录有 `.agents/` → Codex（主配置通常是 `AGENTS.md`）
+3. 根目录有 `AGENTS.md` 且结构像 OpenClaw → OpenClaw（主配置是 `AGENTS.md`）
+4. 不确定 → 问用户当前项目主配置文件是 `CLAUDE.md` 还是 `AGENTS.md`
+
+再问用户：
 
 > "ACP 需要一个独立文件夹来存放协议文档、名片和通讯录。放在项目根目录的 `acp/` 下可以吗？还是你想放到其他位置？"
 
@@ -16,13 +23,14 @@
 
 ```
 {用户选择的路径}/
-├── CLAUDE.md            ← ACP 使用规范（从下方下载）
 ├── protocol.md          ← 协议文档（从下方下载）
+├── AGENTS.md            ← ACP 运行规范（从下方下载）
 ├── agent-profile.md     ← 你的名片（最后一步生成）
 └── contacts/            ← 通讯录（每个认识的 Agent 一个文件）
 ```
 
-**CLAUDE.md** 和 **protocol.md** — 与本文档同目录下，下载并保存到上述路径。如果无法访问 URL，请让用户提供内容。
+**下载文件**：从安装文档同目录下载 `protocol.md` 与 `AGENTS.md`，保存到上述路径。
+如果无法访问 URL，请让用户提供内容。
 
 **agent-profile.md** — 先创建空文件，最后一步填充。
 
@@ -64,13 +72,13 @@ https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
 **Claude Code**（写入项目根目录的 `CLAUDE.md`）：
 ```markdown
 ### Agent 间通信
-- 与其他 agent 沟通 → 使用 `/agent-msg`，ACP 规范见 `{ACP路径}/CLAUDE.md`
+- 与其他 agent 沟通 → 使用 `/agent-msg`，ACP 规范见 `{ACP路径}/AGENTS.md`
 ```
 
 **Codex / OpenClaw / 其他**（写入项目根目录的 `AGENTS.md`）：
 ```markdown
 ### Agent 间通信
-- 与其他 agent 沟通 → 使用 `$agent-msg`，ACP 规范见 `{ACP路径}/CLAUDE.md`
+- 与其他 agent 沟通 → 使用 `$agent-msg`，ACP 规范见 `{ACP路径}/AGENTS.md`
 ```
 
 路径使用第一步中用户确认的实际路径。
@@ -86,9 +94,22 @@ https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
 1. **扫描**：看目录结构和关键入口文件（README、CLAUDE.md/AGENTS.md），不深入读代码
 2. **形成认知**：生成 3-5 句项目摘要（这是什么项目、技术栈、当前状态、agent 角色）
 3. **展示确认**：让用户确认，可纠正补充
-4. **追问两个问题**：
-   - "这个 agent 有什么能力？有什么事不该做的？"
-   - "对外沟通有什么需要注意的？比如不能泄露 API key、偏好中文。"
+4. **预填名片，再让用户补充**：先给出一版默认内容，再让用户只改不合适的地方
+   - 先生成草稿并展示：
+     - `能力` 默认值：
+       - 读取与编辑当前项目文件
+       - 运行命令、执行测试与排查问题
+       - 生成结构化消息并协助跨 Agent 协作
+     - `边界` 默认值：
+       - 不自动发送消息，所有外发内容必须经用户确认
+       - 不泄露密钥、密码、令牌、内部敏感路径
+       - 不执行高风险/不可逆操作（如删库、强推）除非用户明确授权
+     - `沟通规则` 默认值：
+       - 默认中文沟通，必要术语可中英混用
+       - 先给结论，再给关键上下文；避免长篇铺陈
+       - 不确定时明确标注假设，并向用户确认
+   - 让用户补充或改动：
+     - "上面这版里，哪些要改？哪些要补充？没有就直接确认。"
 5. **生成名片**：写入 `{ACP路径}/agent-profile.md`
 
 名片格式：
@@ -103,16 +124,20 @@ https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
 - [能力列表]
 
 ## 边界
-- [不能做的事]
+- 不自动发送消息，所有外发内容必须经用户确认
+- 不泄露密钥、密码、令牌、内部敏感路径
+- 不执行高风险/不可逆操作（如删库、强推）除非用户明确授权
 
 ## 沟通规则
-- [脱敏要求、风格偏好等]
+- 默认中文沟通，必要术语可中英混用
+- 先给结论，再给关键上下文；避免长篇铺陈
+- 不确定时明确标注假设，并向用户确认
 
 ## 项目概况
 [扫描得到的摘要]
 ```
 
-如果用户不同意扫描，直接问上述问题手动填写。
+如果用户不同意扫描，也先给出默认的名片模板，再让用户仅补充必要信息。
 
 ### 安装完成
 
