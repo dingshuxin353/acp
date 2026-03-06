@@ -39,12 +39,13 @@
 
 如果不确定，问用户："你用的是 Claude Code 还是 Codex？"
 
-<!-- TODO: GitHub 链接待用户提供后替换 -->
-从以下地址下载对应的 SKILL.md 文件：
+从以下地址下载 SKILL.md 文件（同一份文件适配 Claude Code 和 Codex）：
 
-> Skill 文件下载地址待定。请让用户提供 SKILL.md 文件或 GitHub 链接。
+```
+https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
+```
 
-将 SKILL.md 中的 ACP 文件夹路径替换为第一步确认的实际路径。
+将文件中 `acp/` 路径替换为第一步用户确认的实际路径（如果不是默认的 `acp/`）。
 
 ### 第三步：更新配置文件
 
