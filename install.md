@@ -73,6 +73,8 @@ https://raw.githubusercontent.com/dingshuxin353/acp/main/agent-msg/SKILL.md
 https://ai.weijennie.com/acp/agent-msg/SKILL.md
 ```
 
+下载前先确保目标目录存在：无论走主地址还是镜像地址，都要先创建 `agent-msg/` 目录（或对应的 skill 父目录），再写入 `SKILL.md`。
+
 如果 GitHub 无法访问，自动改用镜像地址继续安装。
 将文件中 `acp/` 路径替换为第一步用户确认的实际路径（如果不是默认的 `acp/`）。
 
